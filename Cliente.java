@@ -9,7 +9,8 @@ public abstract class Cliente {
         this.nome = nome;
     }
 
-    public Cliente(String cpf, String nome) {
+    public Cliente(String nome) {
+        this.nome = nome;
 
     }
 

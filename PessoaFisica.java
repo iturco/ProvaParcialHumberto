@@ -10,7 +10,8 @@ public class PessoaFisica extends Cliente{
     }
     
     public PessoaFisica(String nome, String cpf) {
-        super(cpf, nome);
+        super(nome);
+        this.cpf = cpf;
     }
 
     @Override

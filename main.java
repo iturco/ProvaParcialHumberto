@@ -63,6 +63,7 @@ public class main {
         switch (tipoPessoa) {
         case 1:
             cliente = CadastrarJuridica();
+            //System.out.println(cliente);
             mesa++;
             break;
 
@@ -79,23 +80,25 @@ public class main {
     public static Cliente CadastrarJuridica() {
         Scanner sc = new Scanner(System.in);
 
-        Cliente pjur = null;
-        System.out.print("Nome: ");
-        String nome = sc.nextLine();
+        //Cliente pJur = null;
         System.out.print("CNPJ: ");
-        String cnpj = sc.nextLine();
-        return pjur;
+        String cnpj = sc.next();
+        System.out.print("Nome: ");
+        String nome = sc.next();
+        PessoaJuridica pJur = new PessoaJuridica(cnpj,nome);
+        return pJur;
     }
 
     // CADASTRO PESSOA FISICA
     public static Cliente CadastrarFisica() {
         Scanner sc = new Scanner(System.in);
 
-        Cliente pFis = null;
+        //Cliente pFis = null;
         System.out.print("Nome: ");
         String nome = sc.nextLine();
         System.out.print("CPF: ");
         String cpf = sc.nextLine();
+        PessoaFisica pFis = new PessoaFisica(cpf, nome);
         return pFis;
     }
 
@@ -125,10 +128,10 @@ public class main {
         case "cnpj":
             for (int i = 0; i < lista.size(); i++) {
                 System.out.print("Qual CNPJ deseja pesquisar?");
-                String cnpj = sc.nextLine();
+                String cnpj = sc.next();
 
                 if (lista.get(i) instanceof Reserva) {
-                    System.out.print("Ja tem reserva");
+                    System.out.println("Ja tem reserva");
                 } else {
                     System.out.println("Ainda não tem reserva");
                 }

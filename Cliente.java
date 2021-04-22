@@ -10,7 +10,11 @@ public abstract class Cliente {
     }
 
     public Cliente(String cpf, String nome) {
+
     }
 
-    //toString
+    @Override
+    public String toString() {
+        return "Cliente: " + nome;
+    }
 }

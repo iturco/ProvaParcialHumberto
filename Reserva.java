@@ -23,8 +23,8 @@ public class Reserva {
     public Reserva() {
     }
 
-    //metodo toString()
+    @Override
     public String toString() {
-        return "Nome: " + this.cliente + ", Pagamento a vista? " + this.pagamentoAVista;
+        return "Nome: " + this.cliente + "\n Pagamento a vista? " + this.pagamentoAVista;
     }
 }

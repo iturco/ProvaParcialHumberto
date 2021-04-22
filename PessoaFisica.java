@@ -13,6 +13,7 @@ public class PessoaFisica extends Cliente{
         super(cpf, nome);
     }
 
+    @Override
     public String toString() {
         return "cpf: " + cpf + "\n Nome: " + getNome();
     }

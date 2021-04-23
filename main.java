@@ -21,7 +21,7 @@ public class main {
             System.out.println("6. Finalizar");
 
             opcao = sc.nextInt();
-            
+
             switch (opcao) {
             case 1:
                 if (lista.size() < 6) {
@@ -189,22 +189,22 @@ public class main {
             for (int i = 0; i < lista.size(); i++) {
                 Reserva apagar = lista.get(i);
                 Cliente cli = apagar.getCliente();
+                if (cli instanceof PessoaFisica) {
+                    PessoaFisica pf = (PessoaFisica) cli;
 
-                PessoaFisica pf = (PessoaFisica) cli;
+                    if (cpfapagar.equals(pf.getCpf())) {
+                        System.out.println();
+                        lista.remove(i);
+                        if (lista.size() > 5) {
+                            Reserva inverter = espera.get(0);
+                            lista.add(inverter);
+                            espera.remove(espera.get(0));
+                        }
 
-                if (cpfapagar.equals(pf.getCpf())) {
-                    System.out.println();
-                    lista.remove(lista.get(i));
-                    if (lista.size() > 5) {
-                        Reserva inverter = espera.get(0);
-                        lista.add(inverter);
-                        espera.remove(espera.get(0));
+                    } else {
+                        System.out.println("Cpf não encontrado");
                     }
-
-                } else {
-                    System.out.println("Cpf não encontrado");
                 }
-
             }
             break;
 
@@ -215,22 +215,24 @@ public class main {
             for (int i = 0; i < lista.size(); i++) {
                 Reserva apagar = lista.get(i);
                 Cliente cli = apagar.getCliente();
+                if (cli instanceof PessoaJuridica) {
 
-                PessoaJuridica pj = (PessoaJuridica) cli;
+                    PessoaJuridica pj = (PessoaJuridica) cli;
 
-                if (cnpjapagar.equals(pj.getCnpj())) {
-                    System.out.println();
-                    lista.remove(lista.get(i));
-                    if (lista.size() > 5) {
-                        Reserva inverter = espera.get(0);
-                        lista.add(inverter);
-                        espera.remove(espera.get(0));
+                    if (cnpjapagar.equals(pj.getCnpj())) {
+                        System.out.println();
+                        lista.remove(i);
+                        if (lista.size() > 5) {
+                            Reserva inverter = espera.get(0);
+                            lista.add(inverter);
+                            espera.remove(espera.get(0));
+                        }
+
+                    } else {
+                        System.out.println("Cnpj não encontrado");
                     }
-
-                } else {
-                    System.out.println("Cnpj não encontrado");
+                    break;
                 }
-                break;
             }
 
         }

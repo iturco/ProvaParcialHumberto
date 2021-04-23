@@ -25,6 +25,6 @@ public class Reserva {
 
     @Override
     public String toString() {
-        return this.cliente + "\n Pagamento a vista? " + this.pagamentoAVista;
+        return cliente + "\n Pagamento a vista? " + pagamentoAVista;
     }
 }

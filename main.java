@@ -21,9 +21,7 @@ public class main {
             System.out.println("6. Finalizar");
 
             opcao = sc.nextInt();
-            {
-
-            }
+            
             switch (opcao) {
             case 1:
                 if (lista.size() < 6) {

@@ -46,7 +46,8 @@ public class main {
                 ImprimirEspera(espera);
                 break;
             case 5:
-                CancelarReserva(lista);
+                mesa--;
+                CancelarReserva(lista, espera);
                 break;
             // case 7:
             // System.out.println(lista);
@@ -193,27 +194,57 @@ public class main {
     }
 
     // CANCELAR RESERVA
-    public static void CancelarReserva(List<Reserva> lista) {
+    public static void CancelarReserva(List<Reserva> lista, List<Reserva> espera) {
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Cancelar por CPF ou CNPJ? ");
-        String opcao3 = sc.nextLine().toLowerCase();
+        String opcao3 = sc.nextLine();
+        System.out.println("opcao 3 " + opcao3);
 
-        if (opcao3 == "cpf") {
+        // if (opcao3 == "cpf") {
+        switch (opcao3) {
+        case "cpf":
             System.out.print("Qual CPF deseja cancelar a reserva?");
             String cpfapagar = sc.nextLine();
 
             for (int i = 0; i < lista.size(); i++) {
-                if (lista.get(i) instanceof Reserva) {
-                    Reserva apagar = lista.get(i);
-                    if (cpfapagar.equals(apagar)) {
-                        lista.remove(apagar);
+                // if (lista.get(i).equals(cpfapagar)) {
+                // Cliente cli =
+                Reserva apagar = lista.get(i);
+                PessoaFisica pFis;
+                if (pFis.get(i))
+                    if (apagar.equals(cpfapagar)) {
+                        // if (cpfapagar.equals(apagar)) {
+                        lista.remove(lista.get(i));
+                        System.out.println("1 reserva liberada");
+                        Reserva PrimEspera = espera.get(0);
+                        lista.add(PrimEspera);
+                        espera.remove(espera.get(0));
+                    } else {
+                        System.out.println("cpf não encontrado");
                     }
-                } else {
-                    System.out.println("cpf não encontrado");
-                }
             }
+            break;
+
+        case "cnpj":
+            break;
         }
+        // System.out.print("Qual CPF deseja cancelar a reserva?");
+        // String cpfapagar = sc.nextLine();
+
+        // for (int i = 0; i < lista.size(); i++) {
+        // if (lista.get(i) instanceof Reserva) {
+        // // Reserva apagar = lista.get(i);
+
+        // // if (cpfapagar.equals(apagar)) {
+        // lista.remove(lista.get(i));
+        // System.out.println("apagado");
+        // // }
+        // } else {
+        // System.out.println("cpf não encontrado");
+        // }
+        // }
+        // }
 
         // } if (opcao3 == "cnpj") {
         // System.out.print("Qual CNPJ deseja cancelar a reserva?");

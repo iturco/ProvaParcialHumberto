@@ -230,12 +230,16 @@ public class main {
             //int resPesq = Pesquisar(lista);
 
             for (int i = 0; i < lista.size(); i++) {
-
                 Reserva apagar = lista.get(i);
-
                 Cliente cli = apagar.getCliente();
-                PessoaFisica pFis = (PessoaFisica) cli;
-                
+                //PessoaFisica pFis = (PessoaFisica) cli;
+                PessoaFisica pf = (PessoaFisica) cli;
+
+                if(cpfapagar.equals(cli.getCpf())) {
+                    System.out.println();
+                    System.out.println("achei");
+                }
+
                 
                
                

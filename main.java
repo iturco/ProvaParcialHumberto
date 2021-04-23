@@ -12,7 +12,7 @@ public class main {
         int opcao;
         int mesa = 0;
         do {
-            System.out.println("Escolha a opção a seguir");
+            System.out.println("\n Escolha a opção a seguir");
             System.out.println("1. Reservar mesa");
             System.out.println("2. Pesquisar reserva");
             System.out.println("3. Imprimir lista de reserva");
@@ -29,7 +29,6 @@ public class main {
                 if (lista.size() < 6) {
                     mesa++;
                     lista.add(ReservarMesa(lista, mesa));
-                    System.out.println(lista.get(0));
 
                 } else {
                     System.out.println("Sua reserva será colocada na lista de espera");
@@ -64,25 +63,22 @@ public class main {
         Cliente cliente = null;
         boolean avista = true;
 
-        System.out.println("Cadastrar clientes da mesa:");
+        System.out.println("\n Cadastrar clientes da mesa:");
         System.out.println("1. Pessoa juridica");
         System.out.println("2. Pessoa fisica");
         int tipoPessoa = sc.nextInt();
 
         switch (tipoPessoa) {
         case 1:
-
             cliente = CadastrarJuridica();
-
             break;
 
         case 2:
-
             cliente = CadastrarFisica();
             break;
         }
 
-        System.out.println("Formas de pagamentos: ");
+        System.out.println("\n Formas de pagamentos: ");
         System.out.println("1. a vista");
         System.out.println("2. parcelado");
         int pagamento = sc.nextInt();
@@ -130,16 +126,16 @@ public class main {
     public static void Pesquisar(List<Reserva> lista) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Pesquisar por CPF ou CNPJ?");
+        System.out.println("\n Pesquisar por CPF ou CNPJ?  ");
         String opcao2 = sc.nextLine().toLowerCase();
 
         switch (opcao2) {
         case "cpf":
-            System.out.print("Qual CPF deseja pesquisar?");
+            System.out.print("\n Qual CPF deseja pesquisar?  ");
             String cpf = sc.nextLine();
 
             for (int i = 0; i < lista.size(); i++) {
-                Cliente cli =lista.get(i).getCliente();
+                Cliente cli = lista.get(i).getCliente();
                 PessoaFisica pf = (PessoaFisica) cli;
                 if (pf.getCpf().equals(cpf)) {
                     System.out.print("Ja tem reserva");
@@ -151,7 +147,7 @@ public class main {
 
         case "cnpj":
             for (int i = 0; i < lista.size(); i++) {
-                System.out.print("Qual CNPJ deseja pesquisar?");
+                System.out.print("\n Qual CNPJ deseja pesquisar?  ");
                 String cnpj = sc.nextLine();
                 Cliente cli = lista.get(i).getCliente();
                 PessoaJuridica pj = (PessoaJuridica) cli;
@@ -184,12 +180,12 @@ public class main {
     public static void CancelarReserva(List<Reserva> lista, List<Reserva> espera) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Cancelar por CPF ou CNPJ? ");
+        System.out.print("\n Cancelar por CPF ou CNPJ?  ");
         String opcao3 = sc.nextLine().toLowerCase();
 
         switch (opcao3) {
         case "cpf":
-            System.out.print("Qual CPF deseja cancelar a reserva?");
+            System.out.print("\n Qual CPF deseja cancelar a reserva?  ");
             String cpfapagar = sc.nextLine();
 
             for (int i = 0; i < lista.size(); i++) {
@@ -200,67 +196,45 @@ public class main {
 
                 if (cpfapagar.equals(pf.getCpf())) {
                     System.out.println();
-                    System.out.println("achei");
+                    lista.remove(lista.get(i));
+                    if (lista.size() > 5) {
+                        Reserva inverter = espera.get(0);
+                        lista.add(inverter);
+                        espera.remove(espera.get(0));
+                    }
+
+                } else {
+                    System.out.println("Cpf não encontrado");
                 }
 
-                // if (cpfapagar.equals(pFis)) {
-                // System.out.println("achei");
-
-                // }
-                // if (pFis.getCpf().equals(cpfapagar)) {
-                // // if (cpfapagar.equals(pFis.getCpf()))
-                // lista.remove(pFis.getCpf());
-                // System.out.println("APAGUEI");
-                // }
-                else {
-                    System.out.println("nao achei");
-                }
-                // if (lista.get(i) instanceof Reserva) {
-                // Reserva apagar = lista.get(i);
-                // Cliente cli = apagar.getCliente();
-                // PessoaFisica pFis = (PessoaFisica) cli;
-                // lista.remove(lista.get(i));
-                // Reserva primEspera = espera.get(0);
-                // lista.add(primEspera);
-                // espera.remove(espera.get(0));
-                // System.out.println("reserva liberada");
-
-                // }
             }
             break;
 
         case "cnpj":
-            break;
+            System.out.print("\n Qual CNPJ deseja cancelar a reserva?  ");
+            String cnpjapagar = sc.nextLine();
+
+            for (int i = 0; i < lista.size(); i++) {
+                Reserva apagar = lista.get(i);
+                Cliente cli = apagar.getCliente();
+
+                PessoaJuridica pj = (PessoaJuridica) cli;
+
+                if (cnpjapagar.equals(pj.getCnpj())) {
+                    System.out.println();
+                    lista.remove(lista.get(i));
+                    if (lista.size() > 5) {
+                        Reserva inverter = espera.get(0);
+                        lista.add(inverter);
+                        espera.remove(espera.get(0));
+                    }
+
+                } else {
+                    System.out.println("Cnpj não encontrado");
+                }
+                break;
+            }
+
         }
-        // System.out.print("Qual CPF deseja cancelar a reserva?");
-        // String cpfapagar = sc.nextLine();
-
-        // for (int i = 0; i < lista.size(); i++) {
-        // if (lista.get(i) instanceof Reserva) {
-        // // Reserva apagar = lista.get(i);
-
-        // // if (cpfapagar.equals(apagar)) {
-        // lista.remove(lista.get(i));
-        // System.out.println("apagado");
-        // // }
-        // } else {
-        // System.out.println("cpf não encontrado");
-        // }
-        // }
-        // }
-
-        // } if (opcao3 == "cnpj") {
-        // System.out.print("Qual CNPJ deseja cancelar a reserva?");
-        // String cnpjapagar = sc.nextLine();
-
-        // if (lista.get(i) instanceof Cliente) {
-        // Cliente apagar = lista.get(i);
-        // if (cnpjapagar.equals(apagar)) {
-        // lista.remove(apagar);
-        // }
-        // } else {
-        // System.out.println("cnpj não encontrado");
-        // }
-
     }
 }

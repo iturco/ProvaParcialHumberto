@@ -25,6 +25,6 @@ public class Reserva {
 
     @Override
     public String toString() {
-        return cliente + "\n Pagamento a vista? " + pagamentoAVista;
+        return " " +cliente + "  || Pagamento a vista? " + pagamentoAVista + "\n";
     }
 }

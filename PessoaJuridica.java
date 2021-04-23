@@ -14,20 +14,8 @@ public class PessoaJuridica extends Cliente {
         this.cnpj = cnpj;
     }
 
-    // @Override
-    // public boolean equals(Object obj) {
-    //     String auxCnpj;
-    //     if (obj instanceof Cliente) {
-    //         auxCnpj = ((PessoaJuridica) obj).cnpj;
-    //         if(cnpj.equals(auxCnpj)) {
-    //             return true;
-    //         }
-    //     }
-    //     return false;
-    // }
-
     @Override
     public String toString() {
-        return "Pessoa juridica --> cnpj: " + cnpj + "\n Nome: " + getNome();
+        return "Pessoa juridica --> cnpj: " + cnpj + "  || Nome: " + getNome();
     }
 }

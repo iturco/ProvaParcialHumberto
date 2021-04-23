@@ -1,6 +1,6 @@
-public class PessoaJuridica extends Cliente{
+public class PessoaJuridica extends Cliente {
     private String cnpj;
-    
+
     public PessoaJuridica(String cnpj, String nome) {
         super(nome);
         this.cnpj = cnpj;
@@ -16,6 +16,6 @@ public class PessoaJuridica extends Cliente{
 
     @Override
     public String toString() {
-        return "cnpj: " + cnpj + "\n Nome: " + getNome();
+        return "Pessoa juridica --> cnpj: " + cnpj + "\n Nome: " + getNome();
     }
 }

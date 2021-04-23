@@ -1,4 +1,4 @@
-public class PessoaFisica extends Cliente{
+public class PessoaFisica extends Cliente {
     private String cpf;
 
     public String getCpf() {
@@ -8,7 +8,7 @@ public class PessoaFisica extends Cliente{
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    
+
     public PessoaFisica(String nome, String cpf) {
         super(nome);
         this.cpf = cpf;
@@ -16,6 +16,6 @@ public class PessoaFisica extends Cliente{
 
     @Override
     public String toString() {
-        return "cpf: " + cpf + "\n Nome: " + getNome();
+        return "Pessoa fisica --> cpf: " + cpf + "\n Nome: " + getNome();
     }
 }

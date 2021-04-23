@@ -2,14 +2,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+//int mesa = 0;
 public class main {
+    // int mesa = 0;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         List<Reserva> lista = new ArrayList<>();
         List<Reserva> espera = new ArrayList<>();
 
         int opcao;
-
+        int mesa = 0;
         do {
             System.out.println("Escolha a opção a seguir");
             System.out.println("1. Reservar mesa");
@@ -23,11 +25,15 @@ public class main {
 
             switch (opcao) {
             case 1:
-                if (lista.size() <= 6) {
-                    lista.add(ReservarMesa(lista));
+                if (lista.size() < 6) {
+                    mesa++;
+                    lista.add(ReservarMesa(lista, mesa));
+
                 } else {
                     System.out.println("Sua reserva será colocada na lista de espera");
-                    espera.add(ReservarMesa(espera));
+                    mesa++;
+                    espera.add(ReservarMesa(espera, mesa));
+
                 }
                 break;
             case 2:
@@ -42,6 +48,9 @@ public class main {
             case 5:
                 CancelarReserva(lista);
                 break;
+            // case 7:
+            // System.out.println(lista);
+            // break;
             }
         } while (opcao != 6);
         System.out.println("Finalizado");
@@ -49,11 +58,11 @@ public class main {
     }
 
     // RESERVA DA MESA
-    public static Reserva ReservarMesa(List<Reserva> lista) {
+
+    public static Reserva ReservarMesa(List<Reserva> lista, int mesa) {
         Scanner sc = new Scanner(System.in);
         Cliente cliente = null;
-        Reserva reserva = null;
-        int mesa = 0;
+        // Reserva reserva = null;
 
         System.out.println("Cadastrar clientes da mesa:");
         System.out.println("1. Pessoa juridica");
@@ -63,16 +72,20 @@ public class main {
         switch (tipoPessoa) {
         case 1:
             cliente = CadastrarJuridica();
-            //System.out.println(cliente);
-            mesa++;
+            System.out.println(cliente);
+            // Reserva reserva = new Reserva(cliente, true);
+
+            System.out.println("mesa: " + mesa);
             break;
 
         case 2:
             cliente = CadastrarFisica();
-            mesa++;
+
             break;
         }
-
+        Reserva reserva = new Reserva(cliente, true);
+        System.out.println();
+        System.out.println("reserva: " + reserva);
         return reserva;
     }
 
@@ -80,12 +93,12 @@ public class main {
     public static Cliente CadastrarJuridica() {
         Scanner sc = new Scanner(System.in);
 
-        //Cliente pJur = null;
+        // Cliente pJur = null;
         System.out.print("CNPJ: ");
         String cnpj = sc.next();
         System.out.print("Nome: ");
         String nome = sc.next();
-        PessoaJuridica pJur = new PessoaJuridica(cnpj,nome);
+        PessoaJuridica pJur = new PessoaJuridica(cnpj, nome);
         return pJur;
     }
 
@@ -93,7 +106,7 @@ public class main {
     public static Cliente CadastrarFisica() {
         Scanner sc = new Scanner(System.in);
 
-        //Cliente pFis = null;
+        // Cliente pFis = null;
         System.out.print("Nome: ");
         String nome = sc.nextLine();
         System.out.print("CPF: ");
@@ -115,7 +128,7 @@ public class main {
             for (int i = 0; i < lista.size(); i++) {
                 System.out.print("Qual CPF deseja pesquisar?");
                 String cpf = sc.nextLine();
-                
+
                 if (lista.get(i) instanceof Reserva) {
                     System.out.print("Ja tem reserva");
                 } else {
@@ -144,68 +157,76 @@ public class main {
 
     // IMPRIMIR RESERVAS
     public static void ImprimirReservas(List<Reserva> lista) {
-        for (int i = 0; i <= 6; i++) {
-            if (PessoaFisica instanceof Cliente) {
-                System.out.println("Cliente do tipo Pessoa Fisica");
-                System.out.println(PessoaFisica);
-                // System.out.println("Pagamento a vista?");
-            } else {
-                System.out.println("Cliente do tipo Pessoa Juridica");
-                System.out.println(PessoaJuridica);
-                // System.out.println("Pagamento a vista?");
-            }
-        }
+        // PessoaFisica pFis = null;
+        System.out.println(lista);
+
+        // for (int i = 0; i <= 6; i++) {
+        // if (PessoaFisica instanceof Cliente) {
+        // System.out.println("Cliente do tipo Pessoa Fisica");
+        // System.out.println(PessoaFisica);
+        // // System.out.println("Pagamento a vista?");
+        // } else {
+        // System.out.println("Cliente do tipo Pessoa Juridica");
+        // System.out.println(PessoaJuridica);
+        // // System.out.println("Pagamento a vista?");
+        // }
+        // }
 
     }
 
     // IMPRIMIR LISTA DE ESPERA
     public static void ImprimirEspera(List<Reserva> espera) {
-        for(int i = 0; espera.size(); i++) {
-            if (PessoaFisica instanceof Cliente) {
-                System.out.println("Cliente do tipo Pessoa Fisica");
-                System.out.println(PessoaFisica);
-                // System.out.println("Pagamento a vista?");
-            } else {
-                System.out.println("Cliente do tipo Pessoa Juridica");
-                System.out.println(PessoaJuridica);
-                // System.out.println("Pagamento a vista?");
-            }
-        }
+
+        System.out.println(espera);
+
+        // for (int i = 0; espera.size(); i++) {
+        // if (PessoaFisica instanceof Cliente) {
+        // System.out.println("Cliente do tipo Pessoa Fisica");
+        // System.out.println(PessoaFisica);
+        // // System.out.println("Pagamento a vista?");
+        // } else {
+        // System.out.println("Cliente do tipo Pessoa Juridica");
+        // System.out.println(PessoaJuridica);
+        // // System.out.println("Pagamento a vista?");
+        // }
+        // }
     }
+
     // CANCELAR RESERVA
     public static void CancelarReserva(List<Reserva> lista) {
         Scanner sc = new Scanner(System.in);
 
-        for (int i = 0; i < lista.size(); i++) {
-            System.out.print("Cancelar por CPF ou CNPJ? ");
-            String opcao3 = sc.nextLine().toLowerCase();
+        System.out.print("Cancelar por CPF ou CNPJ? ");
+        String opcao3 = sc.nextLine().toLowerCase();
 
-            if (opcao3 == "cpf") {
-                System.out.print("Qual CPF deseja cancelar a reserva?");
-                String cpfapagar = sc.nextLine();
+        if (opcao3 == "cpf") {
+            System.out.print("Qual CPF deseja cancelar a reserva?");
+            String cpfapagar = sc.nextLine();
 
-                if (lista.get(i) instanceof Cliente) {
-                    Cliente apagar = lista.get(i);
+            for (int i = 0; i < lista.size(); i++) {
+                if (lista.get(i) instanceof Reserva) {
+                    Reserva apagar = lista.get(i);
                     if (cpfapagar.equals(apagar)) {
                         lista.remove(apagar);
                     }
                 } else {
                     System.out.println("cpf não encontrado");
                 }
-            } else if (opcao3 == "cnpj") {
-                System.out.print("Qual CNPJ deseja cancelar a reserva?");
-                String cnpjapagar = sc.nextLine();
-
-                if (lista.get(i) instanceof Cliente) {
-                    Cliente apagar = lista.get(i);
-                    if (cnpjapagar.equals(apagar)) {
-                        lista.remove(apagar);
-                    }
-                } else {
-                    System.out.println("cnpj não encontrado");
-                }
             }
-
         }
+
+        // } if (opcao3 == "cnpj") {
+        // System.out.print("Qual CNPJ deseja cancelar a reserva?");
+        // String cnpjapagar = sc.nextLine();
+
+        // if (lista.get(i) instanceof Cliente) {
+        // Cliente apagar = lista.get(i);
+        // if (cnpjapagar.equals(apagar)) {
+        // lista.remove(apagar);
+        // }
+        // } else {
+        // System.out.println("cnpj não encontrado");
+        // }
+
     }
 }

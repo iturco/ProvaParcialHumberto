@@ -1,6 +1,7 @@
 public class Reserva {
     private Cliente cliente;
     private boolean pagamentoAVista;
+
     public Cliente getCliente() {
         return cliente;
     }
@@ -18,9 +19,8 @@ public class Reserva {
     }
 
     public Reserva(Cliente cliente, boolean pagamentoAVista) {
-
-    }
-    public Reserva() {
+        this.cliente = cliente;
+        this.pagamentoAVista = pagamentoAVista;
     }
 
     @Override
